@@ -1,0 +1,24 @@
+body {
+    background-color: blanchedalmond
+}
+
+.container {
+    margin:22px;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+.partie {
+    padding: 5;
+    border: solid 0.3em;
+
+}
+.partie1{
+    order: 1;
+    max-width:500px
+}
+.partie2{
+    order: 2;
+    min-height: 100px;
+}
