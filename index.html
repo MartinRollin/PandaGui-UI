@@ -42,7 +42,7 @@
             <div class="partie" draggable="true">
                 hello le monde est beau
             </div>
-            <div class="partie partie2" draggable="true">
+            <div id="draggablePart" class="partie partie2" draggable="true">
                 <button class="favorite styled"
                     type="button">
                     Add to favorites
@@ -68,6 +68,11 @@
             </div>
         </div>
         
+        <script>
+            var draggablePart = document.getElementById('draggablePart');
+            draggablePart.onclick = function() { alert("oh")};
+            draggablePart.ondragend = function() {alert("bim ça se déplace")};
+        </script>
     </body>
 
 </html>
