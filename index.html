@@ -1,78 +1,113 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.min.css" />
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.all.js"></script>
-
-    </head>
-    <body>     
-            <div class="grid-stack">
-              <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="2">
-                <div class="grid-stack-item-content partie">my first widget</div>
-              </div>
-              <div class="grid-stack-item" data-gs-x="4" data-gs-y="0" data-gs-width="4" data-gs-height="4">
-                <div class="grid-stack-item-content partie"><div class="partie" draggable="true">
-                        hello le monde est beau
-                    </div>
-                    <div class="partie partie2" draggable="true">
-                        <button class="favorite styled"
-                            type="button">
-                            Add to favorites
-                        </button>
-                        « Texte » est issu du mot latin « textum »,
-                        dérivé du verbe « texere » qui signifie « tisser ». Le mot 
-                        s'applique à l'entrelacement des fibres utilisées dans le 
-                        tissage, voir par exemple Ovide : « Quo super iniecit textum
-                        rude sedula Baucis = (un siège) sur lequel Baucis empressée
-                        avait jeté un tissu grossier »2 ou au tressage (exemple 
-                        chez Martial « Vimineum textum = panier d'osier tressé »). 
-                        Le verbe a aussi le sens large de construire comme dans 
-                        « basilicam texere = construire une basilique » chez 
-                        Cicéron3.
-                    </div></div>
-              </div>
-            </div>
-            
-            <script type="text/javascript">
-              $('.grid-stack').gridstack();
-            </script>
-        <div class="container">
-            <div class="partie" draggable="true">
-                hello le monde est beau
-            </div>
-            <div id="draggablePart" class="partie partie2" draggable="true">
-                <button class="favorite styled"
-                    type="button">
-                    Add to favorites
-                </button>
-                « Texte » est issu du mot latin « textum »,
-                dérivé du verbe « texere » qui signifie « tisser ». Le mot 
-                s'applique à l'entrelacement des fibres utilisées dans le 
-                tissage, voir par exemple Ovide : « Quo super iniecit textum
-                rude sedula Baucis = (un siège) sur lequel Baucis empressée
-                avait jeté un tissu grossier »2 ou au tressage (exemple 
-                chez Martial « Vimineum textum = panier d'osier tressé »). 
-                Le verbe a aussi le sens large de construire comme dans 
-                « basilicam texere = construire une basilique » chez 
-                Cicéron3.
-            </div>
-            <div class="partie partie1" draggable="true">
-                Les formes anciennes du Moyen Âge désignent au xiie siècle 
-                le volume qui contient le texte sacré des Évangiles, puis 
-                au xiiie siècle. le texte original d'un livre saint ou des
-                propos de quelqu'un. Au xviie siècle le mot s’applique au 
-                passage d'un ouvrage pris comme référence et au début du 
-                xixe siècle le mot texte a son sens général d'« écrit »6.
-            </div>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.all.js"></script>
+  </head>
+  <body>
+    <div class="grid-stack">
+      <div
+        class="grid-stack-item"
+        data-gs-x="0"
+        data-gs-y="0"
+        data-gs-width="4"
+        data-gs-height="2"
+      >
+        <div class="grid-stack-item-content partie">my first widget</div>
+      </div>
+      <div
+        class="grid-stack-item"
+        data-gs-x="4"
+        data-gs-y="0"
+        data-gs-width="4"
+        data-gs-height="4"
+      >
+        <div class="grid-stack-item-content partie">
+          <div class="partie" draggable="true">
+            hello le monde est beau
+          </div>
+          <div class="partie partie2" draggable="true">
+            <button class="favorite styled" type="button">
+              Add to favorites
+            </button>
+            « Texte » est issu du mot latin « textum », dérivé du verbe « texere
+            » qui signifie « tisser ». Le mot s'applique à l'entrelacement des
+            fibres utilisées dans le tissage, voir par exemple Ovide : « Quo
+            super iniecit textum rude sedula Baucis = (un siège) sur lequel
+            Baucis empressée avait jeté un tissu grossier »2 ou au tressage
+            (exemple chez Martial « Vimineum textum = panier d'osier tressé »).
+            Le verbe a aussi le sens large de construire comme dans « basilicam
+            texere = construire une basilique » chez Cicéron3.
+          </div>
         </div>
-        
-        <script>
-            var draggablePart = document.getElementById('draggablePart');
-            draggablePart.onclick = function() { alert("oh")};
-            draggablePart.ondragend = function() {alert("bim ça se déplace")};
-        </script>
-    </body>
+      </div>
+    </div>
 
+    <script type="text/javascript">
+      $(".grid-stack").gridstack();
+    </script>
+    <div class="container">
+      <div class="partie" draggable="true">
+        hello le monde est beau
+      </div>
+      <div
+        id="draggablePart"
+        class="draggablePart partie partie2"
+        draggable="true"
+      >
+        <button class="favorite styled" type="button">
+          Add to favorites
+        </button>
+        « Texte » est issu du mot latin « textum », dérivé du verbe « texere »
+        qui signifie « tisser ». Le mot s'applique à l'entrelacement des fibres
+        utilisées dans le tissage, voir par exemple Ovide : « Quo super iniecit
+        textum rude sedula Baucis = (un siège) sur lequel Baucis empressée avait
+        jeté un tissu grossier »2 ou au tressage (exemple chez Martial «
+        Vimineum textum = panier d'osier tressé »). Le verbe a aussi le sens
+        large de construire comme dans « basilicam texere = construire une
+        basilique » chez Cicéron3.
+      </div>
+      <div
+        id="draggablePart"
+        class="draggablePart partie partie1"
+        draggable="true"
+        onclick="alert('hello')"
+        ondragend="changePosition(this);"
+      >
+        Les formes anciennes du Moyen Âge désignent au xiie siècle le volume qui
+        contient le texte sacré des Évangiles, puis au xiiie siècle. le texte
+        original d'un livre saint ou des propos de quelqu'un. Au xviie siècle le
+        mot s’applique au passage d'un ouvrage pris comme référence et au début
+        du xixe siècle le mot texte a son sens général d'« écrit »6.
+      </div>
+      <div
+        id="draggablePart"
+        class="draggablePart partie partie3"
+        draggable="true"
+      >
+        Bonjour, je mange du fromage tous les matins
+      </div>
+    </div>
+
+    <script>
+      var draggableParts = document.getElementsByClassName("draggablePart");
+      draggableParts[0].onclick = function() {
+        alert("oh");
+      };
+      //Change la position de l'élément en fonction de l'endroit où se trouve la souris à la fin du drop
+      function changePosition(element) {
+        let cursorHeight = window.clientX;
+        let positions = new Array(0);
+        for (let draggablePart of draggableParts) {
+          alert(draggablePart.offsetTop);
+        }
+        element.style.order = 1;
+      }
+    </script>
+  </body>
 </html>
