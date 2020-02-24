@@ -29,3 +29,9 @@ body {
   order: 4;
   max-width: 500px;
 }
+.dropzone {
+  width: 45%;
+  height: auto;
+  border: solid 0.1em red;
+  background-color: rosybrown;
+}
