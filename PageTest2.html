@@ -42,7 +42,7 @@
       Cicéron3.
     </div>
 
-    <button type="button" class="collapsible">Joint states</button> 
+    <button type="button" draggable="true" class="collapsible" ondragstart="dragstart_handler(event);">Joint states</button> 
     <div class="content">
       <div class="jointPosition">
           <button type="button" class="collapsible" ><dd>Joint position</dd></button> 
@@ -189,4 +189,21 @@
       false
     );
   </script>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  } 
+</script>
 </html>
