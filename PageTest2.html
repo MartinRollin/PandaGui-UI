@@ -2,6 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/PageTest2.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
   </head>
   <body onload="init();">
     <span class="bouton"><a href="index.html">redirection</a></span>
@@ -35,6 +37,72 @@
       construire comme dans « basilicam texere = construire une basilique » chez
       Cicéron3.
     </div>
+
+    <button type="button" class="collapsible">Joint states</button> 
+    <div class="content">
+      <div class="jointPosition">
+          <button type="button" class="collapsible" ><dd>Joint position</dd></button> 
+          <div class="content">
+            <br>
+            <div class="sliders">     
+              <input min="-2.89" max="2.89" value="0" step="0.01" class="slider" id="q0_slider" oninput="q0_slider.value = q0_value.value" type="range">
+              <output class="slider_name" lang="latex" > \boldsymbol{q_0} </output>
+              <output class="slider_min_val" id="q0_min_value"> -2.89</output>
+              <output class="slider_max_val" id="q0_max_value"> 2.89</output>
+              <output class="slider_val" id="q0_value"> val</output>
+            </div>
+          <div class="sliders">
+            <input min="-1.76" max="1.76" value="0" step="0.01" class="slider" id="q1_slider" oninput="q1_slider.value = q1_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_1} </output>
+            <output class="slider_min_val" id="q1_min_value"> -1.76</output>
+            <output class="slider_max_val" id="q1_max_value">1.76 </output>
+            <output class="slider_val" id="q1_value"></output>
+          </div>
+          <div class="sliders">
+            <input min="-2.89" max="2.89" value="0" step="0.01" class="slider" id="q2_slider" oninput="q2_slider.value = q2_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_2} </output>
+            <output class="slider_min_val" id="q2_min_value"> -1.76</output>
+            <output class="slider_max_val" id="q2_max_value">1.76 </output>
+            <output class="slider_val" id="q2_value"></output>
+          </div>
+          <div class="sliders">
+            <input min="-3.07" max="-0.07" value="0" step="0.01" class="slider" id="q3_slider" oninput="q3_slider.value = q3_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_3} </output>
+            <output class="slider_val" id="q3_value"></output>
+            <output class="slider_min_val" id="q3_min_value"> -3.07</output>
+            <output class="slider_max_val" id="q3_max_value">-0.07 </output>
+          </div>
+          <div class="sliders">
+            <input min="-2.89" max="2.89" value="0" step="0.01" class="slider" id="q4_slider"        oninput="q4_slider.value = q4_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_4} </output>
+            <output class="slider_val" id="q4_value"></output>
+            <output class="slider_min_val" id="q4_min_value"> -2.89</output>
+            <output class="slider_max_val" id="q4_max_value"> 2.89 </output>
+          </div>
+          <div class="sliders">
+            <input min="-0.01" max="3.75" value="0" step="0.01" class="slider" id="q5_slider"        oninput="q5_slider.value = q5_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_5} </output>
+            <output class="slider_val" id="q5_value"></output>
+            <output class="slider_min_val" id="q5_min_value">-0.01</output>
+            <output class="slider_max_val" id="q5_max_value"> 3.75 </output>
+          </div>
+          <div class="sliders">
+            <input min="-2.89" max="2.89" value="0" step="0.01" class="slider" id="q6_slider"        oninput="q6_slider.value = q6_value.value" type="range"> 
+            <output class="slider_name" lang="latex" > \boldsymbol{q_6} </output>
+            <output class="slider_val" id="q6_value"></output>
+            <output class="slider_min_val" id="q6_min_value">-2.89</output>
+            <output class="slider_max_val" id="q6_max_value"> 2.89 </output>
+          </div>
+          <br>
+        </div>
+      </div>
+
+
+
+
+
+
+
   </body>
   <script type="text/javascript">
     document.getElementById("Texte").addEventListener("onclick", function() {
