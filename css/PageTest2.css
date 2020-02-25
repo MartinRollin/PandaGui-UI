@@ -7,9 +7,10 @@ body {
 .dropzone {
   background-color: rgb(174, 211, 198);
   border: solid 0.1em rgb(185, 93, 6);
-  width: 45%;
+  min-width: 47%;
   margin: 1%;
-  height: 200px;
+  padding-bottom: 100px;
+  min-height: 200px;
 }
 .bouton {
   justify-content: center;
