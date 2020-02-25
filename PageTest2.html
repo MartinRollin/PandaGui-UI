@@ -28,9 +28,9 @@
       <button
         class="favorite styled"
         type="button"
-        ondragstart="dragstart_handler(event);"
+        onclick="let partie = new PartieDraggable();"
       >
-        Add to favorites
+        Ajouter une div
       </button>
       « Texte » est issu du mot latin « textum », dérivé du verbe « texere » qui
       signifie « tisser ». Le mot s'applique à l'entrelacement des fibres
@@ -295,6 +295,15 @@
       for (let i = 0; i < coll.length; i++) {
         document.getElementsByClassName("dropzone")[0].appendChild(coll[i]);
       }
+    }
+  </script>
+
+  <script>
+    function PartieDraggable() {
+      var newDiv = document.createElement("div");
+      newDiv.innerText = "Ceci est une nouvelle partie";
+      newDiv.draggable = true;
+      document.getElementsByClassName("dropzone")[0].appendChild(newDiv);
     }
   </script>
 </html>
