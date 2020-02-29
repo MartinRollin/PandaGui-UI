@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="scripts/Slider.js"></script>
     <script
       type="text/javascript"
       src="http://latex.codecogs.com/latexit.js"
@@ -306,6 +307,26 @@
         if (err) throw err;
         console.log("Saved!");
       });
+    </script>
+
+    <script>
+      let jointPositionSliders = new Array(0);
+      jointPositionSliders.push(new Slider("q0", -2.89, 2.89, true));
+      jointPositionSliders.push(new Slider("q1", -1.76, 1.76, true));
+      jointPositionSliders.push(new Slider("q2", -2.89, 2.89, true));
+      jointPositionSliders.push(new Slider("q3", -3.07, -0.07, true));
+      jointPositionSliders.push(new Slider("q4", -2.89, 2.89, true));
+      jointPositionSliders.push(new Slider("q5", -0.01, 3.75, true));
+      jointPositionSliders.push(new Slider("q6", -2.89, 2.89, true));
+
+      jointPositionSliders.forEach(slider =>
+        document
+          .getElementsByClassName("jointPosition")[0]
+          .appendChild(slider.Affiche)
+      );
+      document
+        .getElementsByClassName("jointPosition")[0]
+        .appendChild(jointPositionSliders[0].Affiche);
     </script>
   </body>
 </html>
