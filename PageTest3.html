@@ -20,7 +20,7 @@
       text-align: center;
       border: 1px solid #d3d3d3;
     }
-    #jointState {
+    /* #jointState {
       position: absolute;
       z-index: 9;
       background-color: #f1f1f1;
@@ -28,6 +28,17 @@
       border: 1px solid #d3d3d3;
     }
     #jointStateHeader {
+      cursor: move;
+      z-index: 10;
+    } */
+    #movingDiv {
+      position: absolute;
+      z-index: 9;
+      background-color: #f1f1f1;
+      text-align: center;
+      border: 1px solid #d3d3d3;
+    }
+    #movingDivHeader {
       cursor: move;
       z-index: 10;
     }
@@ -67,15 +78,15 @@
       <p>DIV</p>
     </div>
 
-    <div id="jointState">
-      <div id="jointStateHeader" class="toggleBar">
+    <div id="movingDiv" class="jointState">
+      <div id="movingDivHeader" class="toggleBar">
         <span class="Header"> Joint states </span>
         <button type="button" class="collapsible">
           Joint states
         </button>
       </div>
       <div class="content">
-        <div class="jointPosition">
+        <div id="jointPosition" class="jointPosition">
           <div id="jointPositionHeader" class="toggleBar">
             <span class="Header"> Joint position </span>
             <button type="button" class="collapsible">
@@ -219,7 +230,7 @@
     <script>
       //Make the DIV element draggagle:
       dragElement(document.getElementById("mydiv"));
-      dragElement(document.getElementById("jointState"));
+      dragElement(document.getElementById("movingDiv"));
 
       function dragElement(elmnt) {
         var pos1 = 0,
@@ -262,11 +273,7 @@
             elmnt.style.top = -10 + "px";
           }
           if (elmnt.offsetLeft >= -350) {
-            // if (elmnt.offsetLeft <= window.outerWidth - elmnt.offsetWidth) {
             elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-            // } else {
-            // elmnt.style.left = window.outerWidth - elmnt.offsetWidth;
-            // }
           } else {
             elmnt.style.left = -350 + "px";
           }
@@ -274,6 +281,7 @@
 
         function closeDragElement() {
           /* stop moving when mouse button is released:*/
+          elmnt.onmouseup = alert(elmnt.offsetLeft);
           document.onmouseup = null;
           document.onmousemove = null;
         }
@@ -300,6 +308,9 @@
       }
     </script>
 
+    <!-- Test pour écrire les positions dans un objet javascript -->
+    <script></script>
+
     <!-- Test pour écrire les positions dans un fichier -->
     <script>
       var fs = require("fs");
@@ -310,23 +321,25 @@
     </script>
 
     <script>
-      let jointPositionSliders = new Array(0);
-      jointPositionSliders.push(new Slider("q0", -2.89, 2.89, true));
-      jointPositionSliders.push(new Slider("q1", -1.76, 1.76, true));
-      jointPositionSliders.push(new Slider("q2", -2.89, 2.89, true));
-      jointPositionSliders.push(new Slider("q3", -3.07, -0.07, true));
+      // definition of the elements of the dashboard
+      let jointPositionSliders = new Array(1);
+      jointPositionSliders[1] = new Slider("q0", -2.89, 2.89, true);
+      jointPositionSliders.push(new Slider("q1", -1.76, 1.76, false));
+      jointPositionSliders.push(new Slider("q2", -1.76, 1.76, true));
+      jointPositionSliders.push(new Slider("q3", -3.07, -0.07, false));
       jointPositionSliders.push(new Slider("q4", -2.89, 2.89, true));
       jointPositionSliders.push(new Slider("q5", -0.01, 3.75, true));
       jointPositionSliders.push(new Slider("q6", -2.89, 2.89, true));
 
-      jointPositionSliders.forEach(slider =>
-        document
-          .getElementsByClassName("jointPosition")[0]
-          .appendChild(slider.Affiche)
-      );
+      var jointState = document.getElementsByClassName("jointState")[0];
+      jointPositionSliders.forEach(slider => {
+        if (slider.Visible) {
+          jointState.appendChild(slider.Render);
+        }
+      });
       document
-        .getElementsByClassName("jointPosition")[0]
-        .appendChild(jointPositionSliders[0].Affiche);
+        .getElementsByClassName("jointState")[0]
+        .appendChild(jointPositionSliders[0].Render);
     </script>
   </body>
 </html>
