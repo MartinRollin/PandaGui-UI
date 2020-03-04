@@ -281,7 +281,7 @@
 
         function closeDragElement() {
           /* stop moving when mouse button is released:*/
-          elmnt.onmouseup = alert(elmnt.offsetLeft);
+          elmnt.onmouseup = alert(elmnt.offsetLeft + " " + elmnt.id);
           document.onmouseup = null;
           document.onmousemove = null;
         }
