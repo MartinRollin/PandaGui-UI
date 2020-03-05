@@ -281,8 +281,11 @@
 
         function closeDragElement() {
           /* stop moving when mouse button is released:*/
-          elmnt.onmouseup = alert(elmnt.offsetLeft + " " + elmnt.id);
-          document.onmouseup = null;
+          // elmnt.onmouseup = e => {
+          //   addOrUpdate(e);
+          //   alert(elmnt.offsetLeft + " " + elmnt.id);
+          // };
+          // document.onmouseup = null;
           document.onmousemove = null;
         }
       }
@@ -341,5 +344,7 @@
         .getElementsByClassName("jointState")[0]
         .appendChild(jointPositionSliders[0].Render);
     </script>
+
+    <script type="text/javascript" src="scripts/positions.js"></script>
   </body>
 </html>
