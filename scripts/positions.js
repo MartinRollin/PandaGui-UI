@@ -1,17 +1,24 @@
-// setting local variables
-let myDiv = document.getElementById("mydiv");
-let movingDiv = document.getElementById("movingDiv");
+// Setting local variables, each movable header part should be here
+let myDivHeader = document.getElementById("mydivheader");
+let movingDivHeader = document.getElementById("movingDivHeader");
 
-myDiv.setAttribute("positionsId", 0);
+// Giving a unique key to each movable header part, in order to update the indexeddb
+myDivHeader.setAttribute("positionsId", 1);
+movingDivHeader.setAttribute("positionsId", 2);
+
 // Create an instance of a db object for us to store the open database in
 let db;
 
 window.onload = function() {
+  // Create an onmouseup handler so that when the form is submitted the addOrUpdateData() function is run
+  myDivHeader.addEventListener("mouseup", addOrUpdateData);
+  movingDivHeader.addEventListener("mouseup", addOrUpdateData);
+
   // Open our database; it is created if it doesn't already exist
   // (see onupgradeneeded below)
   let request = window.indexedDB.open("positions_db", 1);
-  // onerror handler signifies that the database didn't open successfully
 
+  // onerror handler signifies that the database didn't open successfully
   request.onerror = function() {
     console.log("Database failed to open");
   };
@@ -22,7 +29,7 @@ window.onload = function() {
     // Store the opened database object in the db variable. This is used a lot below
     db = request.result;
     // Open our object store and then get a cursor - which iterates through all the
-    // different data items in the store
+    // different data items in the store, in order to set the positions
     let objectStore = db
       .transaction("positions_os")
       .objectStore("positions_os");
@@ -32,24 +39,24 @@ window.onload = function() {
 
       // If there is still another data item to iterate through, keep running this code
       if (cursor) {
-        console.log(cursor.value);
+        console.log("la valeur du curseur : " + cursor.value.sectionTitle);
         let curentElem = document.getElementById(cursor.value.sectionTitle);
+        console.log("id de l'element : " + curentElem.id);
         curentElem.style.top = cursor.value.positionTop;
         curentElem.style.left = cursor.value.positionLeft;
         cursor.continue();
-      } else {
-        console.log("aucunes positions enregistrées pour le moment");
       }
       // if there are no more cursor items to iterate through, say so
       console.log("Notes all displayed");
     };
   };
+
   // Setup the database tables if this has not already been done
   request.onupgradeneeded = function(e) {
     // Grab a reference to the opened database
     let db = e.target.result;
 
-    // Create an objectStore to store our notes in (basically like a single table)
+    // Create an objectStore to storethe positions in (basically like a single table)
     // including a auto-incrementing key
     let objectStore = db.createObjectStore("positions_os", {
       keyPath: "id",
@@ -64,31 +71,30 @@ window.onload = function() {
     console.log("Database setup complete");
   };
 
-  // Create an onsubmit handler so that when the form is submitted the addData() function is run
-  myDiv.addEventListener("mouseup", addOrUpdateData);
-
-  // Define the addData() function
+  // Define the addOrUpdateData() function
   function addOrUpdateData(e) {
-    console.log(e.target.parentNode.id);
     // prevent default - we don't want the form to submit in the conventional way
     e.preventDefault();
+    let elementId = Number(e.target.parentNode.getAttribute("positionsId"));
 
+    let container = e.target.parentNode.parentNode.parentNode;
     // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
     let newItem = {
-      sectionTitle: e.target.parentNode.id,
-      positionLeft: e.target.parentNode.style.left,
-      positionTop: e.target.parentNode.style.top
+      sectionTitle: container.id,
+      positionLeft: container.style.left,
+      positionTop: container.style.top,
+      id: elementId // key : id of the element to update
     };
 
+    console.log(newItem);
     // open a read/write db transaction, ready for adding the data
     let transaction = db.transaction(["positions_os"], "readwrite");
 
     // call an object store that's already been added to the database
     let objectStore = transaction.objectStore("positions_os");
-    let elementId = Number(e.target.parentNode.getAttribute("positionsId"));
-    console.log(elementId);
-    // Make a request to add our newItem object to the object store
-    var request = objectStore.add(newItem);
+
+    // Make a request to put (adds if it doesn't exist or update) our newItem object to the object store
+    var request = objectStore.put(newItem);
     request.onsuccess = function() {
       console.log("reussite du stockage");
     };
