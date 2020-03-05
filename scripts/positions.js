@@ -40,10 +40,19 @@ window.onload = function() {
       // If there is still another data item to iterate through, keep running this code
       if (cursor) {
         console.log("la valeur du curseur : " + cursor.value.sectionTitle);
-        let curentElem = document.getElementById(cursor.value.sectionTitle);
-        console.log("id de l'element : " + curentElem.id);
-        curentElem.style.top = cursor.value.positionTop;
-        curentElem.style.left = cursor.value.positionLeft;
+        if (cursor.value.sectionTitle != "") {
+          let curentElem = document.getElementById(cursor.value.sectionTitle);
+          console.log("id de l'element : " + curentElem.id);
+          curentElem.style.top = cursor.value.positionTop;
+          curentElem.style.left = cursor.value.positionLeft;
+        } else {
+          // supprimer l'element de la bdd
+          console.log(
+            "l'element d'id : " +
+              cursor.value.id +
+              " doit etre retire de la bdd"
+          );
+        }
         cursor.continue();
       }
       // if there are no more cursor items to iterate through, say so
