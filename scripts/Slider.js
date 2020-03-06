@@ -22,7 +22,12 @@ class Slider {
     var output1 = document.createElement("output");
     output1.className = "slider_name";
     output1.lang = "latex";
-    output1.innerText = "\\boldsymbol{" + name + "}";
+    if (name.charAt(1) == "d") {
+      output1.innerText = "\\boldsymbol{\\dot{q}_" + name.charAt(2) + "}";
+    } else {
+      output1.innerText = "\\boldsymbol{" + name + "}";
+    }
+
     this.Render.appendChild(output1);
 
     var output2 = document.createElement("output");

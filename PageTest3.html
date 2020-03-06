@@ -4,6 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script type="text/javascript" src="scripts/SpinBox.js"></script>
+    <script type="text/javascript" src="scripts/eventemmiter2.min.js"></script>
+    <script type="text/javascript" src="scripts/roslib.js"></script>
+
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
     <script type="text/javascript" src="scripts/Slider.js"></script>
@@ -20,19 +25,9 @@
       text-align: center;
       border: 1px solid #d3d3d3;
     }
-    /* #jointState {
-      position: absolute;
-      z-index: 9;
-      background-color: #f1f1f1;
-      text-align: center;
-      border: 1px solid #d3d3d3;
-    }
-    #jointStateHeader {
-      cursor: move;
-      z-index: 10;
-    } */
+
     /* class of the container that will move (and contain the movingDivHeader) */
-    #movingDiv {
+    .movingDiv {
       position: absolute;
       z-index: 9;
       background-color: #f1f1f1;
@@ -40,7 +35,7 @@
       border: 1px solid #d3d3d3;
     }
     /* title of the draggable part */
-    #movingDivHeader {
+    .movingDivHeader {
       cursor: move;
       z-index: 10;
       width: 345px;
@@ -72,14 +67,10 @@
     }
   </style>
   <body>
-    <h1>Draggable DIV Element</h1>
-
-    <p>Click and hold the mouse button down while moving the DIV element</p>
-
     <div id="mydiv">
       <div>
         <div id="mydivheader">
-          <span>Click here to move </span>
+          Click here to move
         </div>
       </div>
       <p>Move</p>
@@ -87,10 +78,77 @@
       <p>DIV</p>
     </div>
 
-    <div id="movingDiv" class="jointState">
+    <h2>Panda GUI</h2>
+    <output id="connection_state"> Not connected </output>
+
+    <div id="commandsDiv" class="movingDiv">
       <div class="toggleBar">
-        <div id="movingDivHeader">
-          <div class="Header">Joint states</div>
+        <div id="commandsDivHeader" class="Header">
+          Commands
+        </div>
+        <button type="button" class="collapsible" draggable="true" id="dragme">
+          Commands
+        </button>
+      </div>
+      <div class="content" style="display:block">
+        <div class="Command">
+          <h1>Trajectory</h1>
+          <input
+            id="play_traj_button_"
+            onclick="playTraj()"
+            class="button"
+            value="Play"
+            type="button"
+          />
+          <input
+            id="build_traj_button_"
+            onclick="buildTraj()"
+            class="button"
+            value="Build"
+            type="button"
+          />
+          <input
+            id="publish_traj_button_"
+            onclick="publishTraj()"
+            class="button"
+            value="Publish"
+            type="button"
+          />
+        </div>
+        <div class="Command">
+          <h1>Kinetic energy</h1>
+          <input
+            id="fake_distance_button_"
+            onclick="fakeDistance()"
+            class="button"
+            value="Fake Distance"
+            type="button"
+          />
+          <input
+            min="0"
+            max="2"
+            value="0"
+            step="0.01"
+            class="slider"
+            id="distance_to_contact_slider"
+            oninput="distToContact()"
+            type="range"
+          />
+          <output class="slider_name" lang="latex"> \boldsymbol{e_k} </output>
+          <output class="slider_min_val" id="distance_to_contact_min_value">
+            0</output
+          >
+          <output class="slider_max_val" id="distance_to_contact_max_value">
+            2</output
+          >
+        </div>
+      </div>
+    </div>
+
+    <div id="movingDiv" class="jointState movingDiv">
+      <div class="toggleBar">
+        <div id="movingDivHeader" class="Header">
+          Joint states
         </div>
         <button type="button" class="collapsible">
           Joint states
@@ -108,6 +166,58 @@
             <br />
           </div>
         </div>
+        <div class="jointVelocity">
+          <div class="toggleBar">
+            <span class="Header"> Joint velocity </span>
+            <button type="button" class="collapsible">
+              <dd>JJoint velocity</dd>
+            </button>
+          </div>
+          <div class="content">
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="robotStateDiv" class="Commands">
+      <div class="toggleBar">
+        <button type="button" class="collapsible">Robot State</button>
+      </div>
+      <div class="content">
+        <br />
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th class="text-left"></th>
+              <th class="text-left">Position</th>
+              <th class="text-left">Orientation</th>
+            </tr>
+          </thead>
+          <tbody class="table-hover">
+            <tr>
+              <td class="text-left">X</td>
+              <td class="text-left" id="pos_x"></td>
+              <td class="text-left" id="ang_x"></td>
+            </tr>
+            <tr>
+              <td class="text-left">Y</td>
+              <td class="text-left" id="pos_y"></td>
+              <td class="text-left" id="ang_y"></td>
+            </tr>
+            <tr>
+              <td class="text-left">Z</td>
+              <td class="text-left" id="pos_z"></td>
+              <td class="text-left" id="ang_z"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="Command">
+          <output> Rootlink : </output><output id="root_link"> val</output
+          ><br />
+          <output> Tip link : </output><output id="tip_link"> val</output><br />
+        </div>
+        <br />
       </div>
     </div>
 
@@ -144,12 +254,30 @@
       jointPositionSliders.push(new Slider("q5", -0.01, 3.75, true));
       jointPositionSliders.push(new Slider("q6", -2.89, 2.89, true));
 
+      let jointVelocitySliders = new Array(1);
+      jointVelocitySliders[1] = new Slider("qd0", -2.89, 2.89, true);
+      jointVelocitySliders.push(new Slider("qd1", -1.76, 1.76, true));
+      jointVelocitySliders.push(new Slider("qd2", -2.89, 2.89, true));
+      jointVelocitySliders.push(new Slider("qd3", -3.07, -0.07, true));
+      jointVelocitySliders.push(new Slider("qd4", -2.89, 2.89, true));
+      jointVelocitySliders.push(new Slider("qd5", -0.01, 3.75, true));
+      jointVelocitySliders.push(new Slider("qd6", -2.89, 2.89, true));
+
       var jointPositionState = document.getElementsByClassName(
         "jointPosition"
       )[0].children[1];
       jointPositionSliders.forEach(slider => {
         if (slider.Visible) {
           jointPositionState.appendChild(slider.Render);
+        }
+      });
+
+      var jointVelocityState = document.getElementsByClassName(
+        "jointVelocity"
+      )[0].children[1];
+      jointVelocitySliders.forEach(slider => {
+        if (slider.Visible) {
+          jointVelocityState.appendChild(slider.Render);
         }
       });
       // jointPositionState.appendChild(jointPositionSliders[0].Render);

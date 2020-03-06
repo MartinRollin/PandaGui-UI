@@ -1,6 +1,7 @@
 //Make the DIV element draggagle:
 dragElement(document.getElementById("mydiv"));
 dragElement(document.getElementById("movingDiv"));
+dragElement(document.getElementById("commandsDiv"));
 
 function dragElement(elmnt) {
   var pos1 = 0,
@@ -18,19 +19,20 @@ function dragElement(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
+
+    // bringing the chosen element to the front
     movableHeaders.forEach(movableHeader => {
-      let movableHeaderDiv = movableHeader.parentNode.parentNode;
-      console.log("identfiant de l'element target : " + e.target.parentNode.id);
+      let movableDiv = movableHeader.parentNode.parentNode;
+      console.log("identfiant de l'element target : " + e.target.id);
       if (
         movableHeader.getAttribute("positionsId") ==
-        e.target.parentNode.getAttribute("positionsId")
+        e.target.getAttribute("positionsId")
       ) {
-        movableHeaderDiv.style.zIndex = "10";
-        movableHeader.style.zIndex = "10";
-        console.log("Voila l'index : " + movableHeaderDiv.style.zIndex);
+        movableDiv.style.zIndex = "10";
+        console.log("Voila l'index qui va devant : " + movableDiv.id);
       } else {
-        movableHeaderDiv.style.zIndex -= 1;
-        movableHeader.style.zIndex -= 1;
+        console.log("va derrière : " + movableDiv.id);
+        movableDiv.style.zIndex = movableDiv.style.zIndex - 1;
       }
     });
 

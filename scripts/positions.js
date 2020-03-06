@@ -1,7 +1,8 @@
 // Setting local variables, each movable header part should be here
 let myDivHeader = document.getElementById("mydivheader");
 let movingDivHeader = document.getElementById("movingDivHeader");
-let movableHeaders = new Array(myDivHeader, movingDivHeader);
+let commandsDivHeader = document.getElementById("commandsDivHeader");
+let movableHeaders = new Array(myDivHeader, movingDivHeader, commandsDivHeader);
 
 // Giving a unique key to each movable header part, in order to update the indexeddb
 let index = 1;
@@ -43,10 +44,8 @@ window.onload = function() {
 
       // If there is still another data item to iterate through, keep running this code
       if (cursor) {
-        console.log("la valeur du curseur : " + cursor.value.sectionTitle);
         if (cursor.value.sectionTitle != "") {
           let curentElem = document.getElementById(cursor.value.sectionTitle);
-          console.log("id de l'element : " + curentElem.id);
           curentElem.style.top = cursor.value.positionTop;
           curentElem.style.left = cursor.value.positionLeft;
         } else {
@@ -88,9 +87,9 @@ window.onload = function() {
   function addOrUpdateData(e) {
     // prevent default - we don't want the form to submit in the conventional way
     e.preventDefault();
-    let elementId = Number(e.target.parentNode.getAttribute("positionsId"));
+    let elementId = Number(e.target.getAttribute("positionsId"));
 
-    let container = e.target.parentNode.parentNode.parentNode;
+    let container = e.target.parentNode.parentNode;
     // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
     let newItem = {
       sectionTitle: container.id,
