@@ -156,7 +156,7 @@
         </button>
       </div>
       <div class="content">
-        <div class="jointPosition">
+        <div id="jointPosition" class="jointPosition">
           <div class="toggleBar">
             <span class="Header"> Joint position </span>
             <button type="button" class="collapsible">
@@ -225,6 +225,18 @@
       </div>
     </div>
 
+    <div id="qpStateDiv" class="jointPosition movingDiv">
+      <div class="toggleBar">
+        <span id="qpStateDivHeader" class="Header"> QP state </span>
+        <button type="button" class="collapsible">
+          <dd>QP state</dd>
+        </button>
+      </div>
+      <div class="content">
+        <br />
+      </div>
+    </div>
+
     <script type="text/javascript" src="scripts/draggable.js"></script>
 
     <script>
@@ -267,9 +279,17 @@
       jointVelocitySliders.push(new Slider("qd5", -0.01, 3.75, true));
       jointVelocitySliders.push(new Slider("qd6", -2.89, 2.89, true));
 
-      var jointPositionState = document.getElementsByClassName(
-        "jointPosition"
-      )[0].children[1];
+      let qpStateSliders = new Array(1);
+      qpStateSliders[1] = new Slider("qp0", -2.89, 2.89, true);
+      qpStateSliders.push(new Slider("qp1", -1.76, 1.76, true));
+      qpStateSliders.push(new Slider("qp2", -2.89, 2.89, true));
+      qpStateSliders.push(new Slider("qp3", -3.07, -0.07, true));
+      qpStateSliders.push(new Slider("qp4", -2.89, 2.89, true));
+      qpStateSliders.push(new Slider("qp5", -0.01, 3.75, true));
+      qpStateSliders.push(new Slider("qp6", -2.89, 2.89, true));
+
+      var jointPositionState = document.getElementById("jointPosition")
+        .children[1];
       jointPositionSliders.forEach(slider => {
         if (slider.Visible) {
           jointPositionState.appendChild(slider.Render);
@@ -282,6 +302,13 @@
       jointVelocitySliders.forEach(slider => {
         if (slider.Visible) {
           jointVelocityState.appendChild(slider.Render);
+        }
+      });
+
+      var qpState = document.getElementById("qpStateDiv").children[1];
+      qpStateSliders.forEach(slider => {
+        if (slider.Visible) {
+          qpState.appendChild(slider.Render);
         }
       });
       // jointPositionState.appendChild(jointPositionSliders[0].Render);

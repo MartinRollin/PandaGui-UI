@@ -24,6 +24,8 @@ class Slider {
     output1.lang = "latex";
     if (name.charAt(1) == "d") {
       output1.innerText = "\\boldsymbol{\\dot{q}_" + name.charAt(2) + "}";
+    } else if (name.charAt(1) == "p") {
+      output1.innerText = "\\boldsymbol{\\tau_" + name.charAt(2) + "}";
     } else {
       output1.innerText = "\\boldsymbol{" + name + "}";
     }
