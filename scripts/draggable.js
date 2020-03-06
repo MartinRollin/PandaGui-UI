@@ -1,5 +1,4 @@
 //Make the DIV element draggagle:
-dragElement(document.getElementById("mydiv"));
 dragElement(document.getElementById("movingDiv"));
 dragElement(document.getElementById("commandsDiv"));
 dragElement(document.getElementById("robotStateDiv"));

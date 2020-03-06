@@ -1,5 +1,4 @@
 // Setting local variables, each movable header part should be here
-let myDivHeader = document.getElementById("mydivheader");
 let movingDivHeader = document.getElementById("movingDivHeader");
 let commandsDivHeader = document.getElementById("commandsDivHeader");
 let robotStateDivHeader = document.getElementById("robotStateDivHeader");
@@ -7,7 +6,6 @@ let qpStateDivHeader = document.getElementById("qpStateDivHeader");
 let gainTunningDivHeader = document.getElementById("gainTunningDiv");
 
 let movableHeaders = new Array(
-  myDivHeader,
   movingDivHeader,
   commandsDivHeader,
   robotStateDivHeader,
