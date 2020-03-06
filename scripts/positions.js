@@ -1,18 +1,22 @@
 // Setting local variables, each movable header part should be here
 let myDivHeader = document.getElementById("mydivheader");
 let movingDivHeader = document.getElementById("movingDivHeader");
+let movableHeaders = new Array(myDivHeader, movingDivHeader);
 
 // Giving a unique key to each movable header part, in order to update the indexeddb
-myDivHeader.setAttribute("positionsId", 1);
-movingDivHeader.setAttribute("positionsId", 2);
+let index = 1;
+movableHeaders.forEach(movableHeader => {
+  movableHeader.setAttribute("positionsId", index++);
+});
 
 // Create an instance of a db object for us to store the open database in
 let db;
 
 window.onload = function() {
   // Create an onmouseup handler so that when the form is submitted the addOrUpdateData() function is run
-  myDivHeader.addEventListener("mouseup", addOrUpdateData);
-  movingDivHeader.addEventListener("mouseup", addOrUpdateData);
+  movableHeaders.forEach(movableHeader =>
+    movableHeader.addEventListener("mouseup", addOrUpdateData)
+  );
 
   // Open our database; it is created if it doesn't already exist
   // (see onupgradeneeded below)

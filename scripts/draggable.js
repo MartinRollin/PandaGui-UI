@@ -18,6 +18,22 @@ function dragElement(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
+    movableHeaders.forEach(movableHeader => {
+      let movableHeaderDiv = movableHeader.parentNode.parentNode;
+      console.log("identfiant de l'element target : " + e.target.parentNode.id);
+      if (
+        movableHeader.getAttribute("positionsId") ==
+        e.target.parentNode.getAttribute("positionsId")
+      ) {
+        movableHeaderDiv.style.zIndex = "10";
+        movableHeader.style.zIndex = "10";
+        console.log("Voila l'index : " + movableHeaderDiv.style.zIndex);
+      } else {
+        movableHeaderDiv.style.zIndex -= 1;
+        movableHeader.style.zIndex -= 1;
+      }
+    });
+
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;

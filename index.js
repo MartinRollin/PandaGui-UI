@@ -11,7 +11,7 @@ let db;
 window.onload = function() {
   // Open our database; it is created if it doesn't already exist
   // (see onupgradeneeded below)
-  let request = window.indexedDB.open("notes_db", 1);
+  let request = window.indexedDB.open("notespositions_db", 1);
 
   // onerror handler signifies that the database didn't open successfully
   request.onerror = function() {
@@ -36,14 +36,15 @@ window.onload = function() {
 
     // Create an objectStore to store our notes in (basically like a single table)
     // including a auto-incrementing key
-    let objectStore = db.createObjectStore("notes_os", {
+    let objectStore = db.createObjectStore("elements_os", {
       keyPath: "id",
       autoIncrement: true
     });
 
     // Define what data items the objectStore will contain
-    objectStore.createIndex("title", "title", { unique: false });
-    objectStore.createIndex("body", "body", { unique: false });
+    objectStore.createIndex("elem_id", "elem_id", { unique: false });
+    objectStore.createIndex("offsetLeft", "offsetLeft", { unique: false });
+    objectStore.createIndex("offsetTop", "offsetTop", { unique: false });
 
     console.log("Database setup complete");
   };
@@ -57,7 +58,7 @@ window.onload = function() {
     e.preventDefault();
 
     // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
-    let newItem = { title: titleInput.value, body: bodyInput.value };
+    let newItem = { elem_id: titleInput.value, body: bodyInput.value };
 
     // open a read/write db transaction, ready for adding the data
     let transaction = db.transaction(["notes_os"], "readwrite");
