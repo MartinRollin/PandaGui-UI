@@ -288,6 +288,208 @@
       </div>
     </div>
 
+    <div id="gainTunningDiv" class="gainTunning movingDiv">
+      <div class="toggleBar">
+        <div id="gainTunningDivHeader" class="Header">Gain Tunning</div>
+        <button type="button" class="collapsible">Gain Tunning</button>
+      </div>
+      <div class="content">
+        <br />
+        <input
+          style="width:200px"
+          id="tune_gain_button_"
+          onclick="tuneGain()"
+          class="button"
+          value="Tune Gains"
+          type="button"
+        />
+        <input
+          style="width:200px"
+          id="send_signal_button_"
+          onclick="moveSignal()"
+          class="button"
+          value="Send signal"
+          type="button"
+        />
+        <form onchange="changeAxis()" id="AxisForm">
+          <label class="radio-inline">
+            <input type="radio" name="AxisForm" value="Trans_x" checked /> Trans
+            x</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" name="AxisForm" value="Trans_y" /> Trans
+            y</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" name="AxisForm" value="Trans_z" /> Trans
+            z</label
+          >
+          <br />
+          <label class="radio-inline"
+            ><input type="radio" name="AxisForm" value="Ori_x" /> Ori x</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" name="AxisForm" value="Ori_y" /> Ori y</label
+          >
+          <label class="radio-inline"
+            ><input type="radio" name="AxisForm" value="Ori_z" /> Ori z</label
+          >
+        </form>
+        <input
+          id="stepAmplitude"
+          min="0"
+          max="1"
+          step="0.001"
+          value="0.01"
+          size="1"
+          onchange="stepAmplitude(event);"
+          type="number"
+        />
+        <div class="gains">
+          <output lang="latex">p_{gains} : </output> <br />
+          <input
+            id="ptx"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changeptx(event);"
+            type="number"
+          />
+          <input
+            id="pty"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changepty(event);"
+            type="number"
+          />
+          <input
+            id="ptz"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changeptz(event);"
+            type="number"
+          />
+          <input
+            id="prx"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changeprx(event);"
+            type="number"
+          />
+          <input
+            id="pry"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changepry(event);"
+            type="number"
+          />
+          <input
+            id="prz"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changeprz(event);"
+            type="number"
+          />
+        </div>
+        <div class="gains">
+          <output lang="latex">d_{gains} : </output> <br />
+          <input
+            id="dtx"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedtx(event);"
+            type="number"
+          />
+          <input
+            id="dty"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedty(event);"
+            type="number"
+          />
+          <input
+            id="dtz"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedtz(event);"
+            type="number"
+          />
+          <input
+            id="drx"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedrx(event);"
+            type="number"
+          />
+          <input
+            id="dry"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedry(event);"
+            type="number"
+          />
+          <input
+            id="drz"
+            min="0"
+            max="10000"
+            step="1"
+            value="6"
+            size="1"
+            onchange="changedrz(event);"
+            type="number"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="emergencyStop">
+      <button type="button" class="emergencyStop">
+        <img
+          src="images/emergency_stop.jpg"
+          width="150"
+          height="150"
+          onclick="emergencyStop()"
+        />
+      </button>
+    </div>
+
+    <script>
+      window.setInterval(watchdog, 2000);
+      //window.scrollTo(0, 1);
+    </script>
+
     <script type="text/javascript" src="scripts/draggable.js"></script>
 
     <script>

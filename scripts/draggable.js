@@ -4,6 +4,7 @@ dragElement(document.getElementById("movingDiv"));
 dragElement(document.getElementById("commandsDiv"));
 dragElement(document.getElementById("robotStateDiv"));
 dragElement(document.getElementById("qpStateDiv"));
+dragElement(document.getElementById("gainTunningDiv"));
 
 function dragElement(elmnt) {
   var pos1 = 0,

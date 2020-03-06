@@ -4,13 +4,15 @@ let movingDivHeader = document.getElementById("movingDivHeader");
 let commandsDivHeader = document.getElementById("commandsDivHeader");
 let robotStateDivHeader = document.getElementById("robotStateDivHeader");
 let qpStateDivHeader = document.getElementById("qpStateDivHeader");
+let gainTunningDivHeader = document.getElementById("gainTunningDiv");
 
 let movableHeaders = new Array(
   myDivHeader,
   movingDivHeader,
   commandsDivHeader,
   robotStateDivHeader,
-  qpStateDivHeader
+  qpStateDivHeader,
+  gainTunningDivHeader
 );
 
 // Giving a unique key to each movable header part, in order to update the indexeddb
