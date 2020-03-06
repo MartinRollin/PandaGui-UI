@@ -2,7 +2,14 @@
 let myDivHeader = document.getElementById("mydivheader");
 let movingDivHeader = document.getElementById("movingDivHeader");
 let commandsDivHeader = document.getElementById("commandsDivHeader");
-let movableHeaders = new Array(myDivHeader, movingDivHeader, commandsDivHeader);
+let robotStateDivHeader = document.getElementById("robotStateDivHeader");
+
+let movableHeaders = new Array(
+  myDivHeader,
+  movingDivHeader,
+  commandsDivHeader,
+  robotStateDivHeader
+);
 
 // Giving a unique key to each movable header part, in order to update the indexeddb
 let index = 1;
@@ -14,11 +21,6 @@ movableHeaders.forEach(movableHeader => {
 let db;
 
 window.onload = function() {
-  // Create an onmouseup handler so that when the form is submitted the addOrUpdateData() function is run
-  movableHeaders.forEach(movableHeader =>
-    movableHeader.addEventListener("mouseup", addOrUpdateData)
-  );
-
   // Open our database; it is created if it doesn't already exist
   // (see onupgradeneeded below)
   let request = window.indexedDB.open("positions_db", 1);
@@ -82,6 +84,11 @@ window.onload = function() {
 
     console.log("Database setup complete");
   };
+
+  // Create an onmouseup handler so that when the form is submitted the addOrUpdateData() function is run
+  movableHeaders.forEach(movableHeader =>
+    movableHeader.addEventListener("mouseup", addOrUpdateData)
+  );
 
   // Define the addOrUpdateData() function
   function addOrUpdateData(e) {
