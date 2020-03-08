@@ -50,6 +50,7 @@ window.onload = function() {
       if (cursor) {
         if (cursor.value.sectionTitle != "") {
           let curentElem = document.getElementById(cursor.value.sectionTitle);
+          console.log(curentElem.id);
           curentElem.style.top = cursor.value.positionTop;
           curentElem.style.left = cursor.value.positionLeft;
         } else {
