@@ -3,7 +3,7 @@ let movingDivHeader = document.getElementById("movingDivHeader");
 let commandsDivHeader = document.getElementById("commandsDivHeader");
 let robotStateDivHeader = document.getElementById("robotStateDivHeader");
 let qpStateDivHeader = document.getElementById("qpStateDivHeader");
-let gainTunningDivHeader = document.getElementById("gainTunningDiv");
+let gainTunningDivHeader = document.getElementById("gainTunningDivHeader");
 
 let movableHeaders = new Array(
   movingDivHeader,
@@ -50,21 +50,20 @@ window.onload = function() {
       if (cursor) {
         if (cursor.value.sectionTitle != "") {
           let curentElem = document.getElementById(cursor.value.sectionTitle);
-          console.log(curentElem.id);
           curentElem.style.top = cursor.value.positionTop;
           curentElem.style.left = cursor.value.positionLeft;
         } else {
           // supprimer l'element de la bdd
           console.log(
-            "l'element d'id : " +
+            "element of id : " +
               cursor.value.id +
-              " doit etre retire de la bdd"
+              " should be removed from the database"
           );
         }
         cursor.continue();
       }
       // if there are no more cursor items to iterate through, say so
-      console.log("Notes all displayed");
+      console.log("All elements are well placed");
     };
   };
 
@@ -108,7 +107,6 @@ window.onload = function() {
       id: elementId // key : id of the element to update
     };
 
-    console.log(newItem);
     // open a read/write db transaction, ready for adding the data
     let transaction = db.transaction(["positions_os"], "readwrite");
 
@@ -118,7 +116,7 @@ window.onload = function() {
     // Make a request to put (adds if it doesn't exist or update) our newItem object to the object store
     var request = objectStore.put(newItem);
     request.onsuccess = function() {
-      console.log("reussite du stockage");
+      console.log("Successful save");
     };
 
     // Report on the success of the transaction completing, when everything is done

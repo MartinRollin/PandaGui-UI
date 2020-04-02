@@ -21,23 +21,6 @@ function dragElement(elmnt) {
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
-
-    // bringing the chosen element to the front
-    movableHeaders.forEach(movableHeader => {
-      let movableDiv = movableHeader.parentNode.parentNode;
-      console.log("identfiant de l'element target : " + e.target.id);
-      if (
-        movableHeader.getAttribute("positionsId") ==
-        e.target.getAttribute("positionsId")
-      ) {
-        movableDiv.style.zIndex = "10";
-        console.log("Voila l'index qui va devant : " + movableDiv.id);
-      } else {
-        console.log("va derrière : " + movableDiv.id);
-        movableDiv.style.zIndex = movableDiv.style.zIndex - 1;
-      }
-    });
-
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
@@ -55,10 +38,10 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    if (elmnt.offsetTop >= -10) {
+    if (elmnt.offsetTop >= 40) {
       elmnt.style.top = elmnt.offsetTop - pos2 + "px";
     } else {
-      elmnt.style.top = -10 + "px";
+      elmnt.style.top = 40 + "px";
     }
     if (elmnt.offsetLeft >= -350) {
       elmnt.style.left = elmnt.offsetLeft - pos1 + "px";

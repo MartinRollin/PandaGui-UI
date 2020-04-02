@@ -52,10 +52,46 @@
       height: 25px;
       justify-content: "left";
     }
+    #pageheader {
+      position: fixed;
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: row;
+      margin: -10px;
+      z-index: 10;
+      height: 50px;
+      background-color: #666;
+    }
+    div#connection_state {
+      width: 300px;
+      padding: 10px;
+      height: max-content;
+      text-align: center;
+      text-justify: center;
+      background-color: bisque;
+    }
   </style>
   <body>
-    <h2>Panda GUI</h2>
-    <output id="connection_state"> Not connected </output>
+    <div id="pageheader">
+      <div style="padding-left: 100px; margin-top: -20px; color:bisque;">
+        <h2>Panda GUI</h2>
+      </div>
+      <div id="connection_state">
+        <output id="connection_state"> Not connected </output>
+      </div>
+      <div class="emergencyStop">
+        <button type="button" class="emergencyStop">
+          <img
+            src="images/emergency_stop.jpg"
+            width="150"
+            height="150"
+            onclick="emergencyStop()"
+          />
+        </button>
+      </div>
+    </div>
 
     <div id="commandsDiv" class="movingDiv">
       <div class="toggleBar">
@@ -449,17 +485,6 @@
       </div>
     </div>
 
-    <div class="emergencyStop">
-      <button type="button" class="emergencyStop">
-        <img
-          src="images/emergency_stop.jpg"
-          width="150"
-          height="150"
-          onclick="emergencyStop()"
-        />
-      </button>
-    </div>
-
     <script>
       window.setInterval(watchdog, 2000);
       //window.scrollTo(0, 1);
@@ -481,7 +506,6 @@
           } else {
             content.style.display = "block";
           }
-          console.log();
           var content = this.parentNode.nextElementSibling;
         });
       }
@@ -542,6 +566,7 @@
       // jointPositionState.appendChild(jointPositionSliders[0].Render);
     </script>
 
+    <script type="text/javascript" src="scripts/front.js"></script>
     <script type="text/javascript" src="scripts/positions.js"></script>
   </body>
 </html>

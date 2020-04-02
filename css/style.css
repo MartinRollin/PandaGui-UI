@@ -23,20 +23,13 @@ body {
 }
 
 div.emergencyStop {
-  position: fixed;
-  right: 0px;
-  width: 150px;
   border: none;
-  top: 0;
   background-color: white;
 }
 
 .emergencyStop {
-  position: fixed;
   display: content;
   background-color: white;
-  border: none;
-  /* background-color: red; */
 }
 
 .active,
