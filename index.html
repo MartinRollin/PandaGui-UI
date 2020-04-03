@@ -1,223 +1,98 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.min.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.4/dist/gridstack.all.js"></script>
+    <title>Javascript MVC</title>
+    <script
+      src="https://code.jquery.com/jquery-2.2.3.min.js"
+      integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+    type="text/javascript"
+    src="http://latex.codecogs.com/latexit.js"
+  ></script>
+</head>
+<style>
+  /* class of the container that will move (and contain the movingDivHeader) */
+  .movingDiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #d3d3d3;
+  }
+  /* title of the draggable part */
+  .movingDivHeader {
+    cursor: move;
+    z-index: 10;
+    width: 345px;
+    border-radius: 3px;
+  }
+  .toggleBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 550px;
+    background-color: #777;
+    border-bottom: solid 1px #666;
+    color: white;
+    font-size: 15px;
+    border-radius: 3px;
+  }
+  .Header {
+    cursor: move;
+    padding: 15px;
+    width: 355px;
+    height: 25px;
+    justify-content: "left";
+  }
+  #pageheader {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: -10px;
+    z-index: 10;
+    height: 50px;
+    background-color: #666;
+  }
+  div#connection_state {
+    width: 300px;
+    padding: 10px;
+    height: max-content;
+    text-align: center;
+    text-justify: center;
+    background-color: bisque;
+  }
+</style>
+
   </head>
-  <body onload="init();">
-    <a href="PageTest2.html">redirection</a>
-    <div class="grid-stack">
-      <div
-        class="grid-stack-item"
-        data-gs-x="0"
-        data-gs-y="0"
-        data-gs-width="4"
-        data-gs-height="2"
-      >
-        <div class="grid-stack-item-content partie">my first widget</div>
-      </div>
-      <div
-        class="grid-stack-item"
-        data-gs-x="4"
-        data-gs-y="0"
-        data-gs-width="4"
-        data-gs-height="4"
-      >
-        <div class="grid-stack-item-content partie">
-          <div class="partie" draggable="true">
-            hello le monde est beau
-          </div>
-          <div class="partie partie2" draggable="true">
-            <button class="favorite styled" type="button">
-              Add to favorites
-            </button>
-            « Texte » est issu du mot latin « textum », dérivé du verbe « texere
-            » qui signifie « tisser ». Le mot s'applique à l'entrelacement des
-            fibres utilisées dans le tissage, voir par exemple Ovide : « Quo
-            super iniecit textum rude sedula Baucis = (un siège) sur lequel
-            Baucis empressée avait jeté un tissu grossier »2 ou au tressage
-            (exemple chez Martial « Vimineum textum = panier d'osier tressé »).
-            Le verbe a aussi le sens large de construire comme dans « basilicam
-            texere = construire une basilique » chez Cicéron3.
-          </div>
-        </div>
-      </div>
+
+  <body>
+    <div class="js-container">
+      <input type="text" class="js-task-textbox" />
+      <input type="button" class="js-add-task-button" value="Add Task" />
+
+      <div class="js-parts-container"></div>
+      <!-- end tasks -->
+      <input
+        type="button"
+        class="js-complete-task-button"
+        value="Complete Tasks"
+      />
+      <input type="button" class="js-delete-task-button" value="Delete Tasks" />
     </div>
+    <!-- end js-container -->
 
-    <script type="text/javascript">
-      $(".grid-stack").gridstack();
-    </script>
-    <div id="container" class="container">
-      <div class="dropzone">
-        <div
-          class="draggablePart partie"
-          draggable="true"
-          onclick="alert(this.style.order);"
-        >
-          hello le monde est beau
-        </div>
-      </div>
-      <div class="dropzone">
-        <div
-          class="draggablePart partie partie2"
-          draggable="true"
-          onclick="alert(this.style.order);"
-        >
-          <button type="button">
-            Add to favorites
-          </button>
-          « Texte » est issu du mot latin « textum », dérivé du verbe « texere »
-          qui signifie « tisser ». Le mot s'applique à l'entrelacement des
-          fibres utilisées dans le tissage, voir par exemple Ovide : « Quo super
-          iniecit textum rude sedula Baucis = (un siège) sur lequel Baucis
-          empressée avait jeté un tissu grossier »2 ou au tressage (exemple chez
-          Martial « Vimineum textum = panier d'osier tressé »). Le verbe a aussi
-          le sens large de construire comme dans « basilicam texere = construire
-          une basilique » chez Cicéron3.
-        </div>
-      </div>
-      <div class="dropzone">
-        <div
-          class="draggablePart partie partie1"
-          draggable="true"
-          onclick="alert(this.style.order);"
-        >
-          Les formes anciennes du Moyen Âge désignent au xiie siècle le volume
-          qui contient le texte sacré des Évangiles, puis au xiiie siècle. le
-          texte original d'un livre saint ou des propos de quelqu'un. Au xviie
-          siècle le mot s’applique au passage d'un ouvrage pris comme référence
-          et au début du xixe siècle le mot texte a son sens général d'« écrit
-          »6.
-        </div>
-      </div>
-      <div id="dropzone" class="dropzone">
-        <div
-          class="draggablePart partie partie3"
-          draggable="true"
-          onclick="alert(this.style.order);"
-        >
-          Bonjour, je mange du fromage tous les matins
-        </div>
-      </div>
-      <div id="position"></div>
-    </div>
-
-    <script type="text/javascript">
-      document.write(
-        "<span class='partie' draggable='true'> bonjour ! </span>"
-      );
-
-      function drop_handler(ev) {
-        console.log("Drop");
-        ev.currentTarget.style.background = "lightyellow";
-
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-      }
-
-      var draggableParts = document.getElementsByClassName("draggablePart");
-      let positions = new Array(10);
-
-      function init() {
-        var containers = document.getElementsByClassName("container");
-        var clickzones = document.getElementsByClassName("dropzone");
-        document
-          .getElementById("dropzone")
-          .addEventListener("onclick", function(e) {
-            alert(e.type);
-          });
-        for (let pas = 0; pas < clickzones.length; pas++) {
-          var clickzone = clickzones[pas];
-          clickzone.addEventListener("onclick", function(e) {
-            alert(e.type);
-          });
-        }
-        for (let pas = 0; pas < draggableParts.length; pas++) {
-          let draggablePart = draggableParts.item(pas);
-          draggablePart.style.order = pas;
-          // draggablePart.addEventListener("ondragend", function(e) {
-          //   dragend_handler(e);
-          // });
-          draggablePart.addEventListener("ondragend", function dragend_handler(
-            event
-          ) {
-            cursorX = event.pageX;
-            cursorY = event.pageY;
-            alert("L'évènement est déclaré");
-            // positionCursor[1] = event.clientY;
-            for (let pas = 0; pas < draggableParts.length; pas++) {
-              let draggablePart = draggableParts.item(pas);
-              positions[pas] = [
-                draggablePart.clientTop,
-                draggablePart.clientLeft
-              ];
-              alert("Le numero " + pas + " chose " + draggablePart.style.order);
-            }
-          });
-        }
-      }
-
-      function dragend_handler(event) {
-        cursorX = event.pageX;
-        cursorY = event.pageY;
-        alert("L'évènement est déclaré");
-        // positionCursor[1] = event.clientY;
-        for (let pas = 0; pas < draggableParts.length; pas++) {
-          let draggablePart = draggableParts.item(pas);
-          positions[pas] = [draggablePart.clientTop, draggablePart.clientLeft];
-          alert("Le numero " + pas + " chose " + draggablePart.style.order);
-        }
-        event.currentTarget.style.color = "blue";
-        document.getElementById("position").innerText =
-          "position X : " +
-          positionCursor[0] +
-          " position Y : " +
-          positionCursor[1] +
-          "position pas :" +
-          positions[2];
-        changePosition(event.currentTarget, cursorX, cursorY);
-      }
-
-      //Change la position de l'élément en fonction de l'endroit où se trouve la souris à la fin du drop
-      function changePosition(element, cursorX, cursorY) {
-        for (let pas = 0; pas < draggableParts.length; pas++) {
-          let draggablePart = draggableParts.item(pas);
-          if (element != draggablePart) {
-            if (positions[pas] > cursorY) {
-              alert(
-                "Element1 " +
-                  element.style.order +
-                  "Element2 " +
-                  draggablePart.style.order
-              );
-              let order = element.style.order;
-              element.style.order = draggablePart.style.order;
-              alert(
-                "Element1 " +
-                  element.style.order +
-                  "Element2 " +
-                  draggablePart.style.order
-              );
-              draggablePart.style.order = order;
-              alert(
-                "Element1 " +
-                  element.style.order +
-                  "Element2 " +
-                  draggablePart.style.order
-              );
-            }
-            alert(
-              "cursorY " + cursorY + " et position top : " + positions[pas][0]
-            );
-          }
-        }
-      }
-    </script>
+    <script src="EventDispatcher.js"></script>
+    <script src="TaskModel.js"></script>
+    <script src="TaskView.js"></script>
+    <script src="TaskController.js"></script>
+    <script src="App.js"></script>
   </body>
+
+  <script type="text/javascript" src="scripts/draggable.js"></script>
 </html>
