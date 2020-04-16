@@ -11,7 +11,6 @@
     <script type="text/javascript" src="scripts/roslib.js"></script>
 
     <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
     <script type="text/javascript" src="scripts/Slider.js"></script>
     <script
       type="text/javascript"
@@ -75,7 +74,7 @@
   </style>
   <body>
     <div id="pageheader">
-      <div style="padding-left: 100px; margin-top: -20px; color:bisque;">
+      <div style="padding-left: 100px; margin-top: -20px; color: bisque;">
         <h2>Panda GUI</h2>
       </div>
       <div id="connection_state">
@@ -102,7 +101,7 @@
           Commands
         </button>
       </div>
-      <div class="content" style="display:block">
+      <div class="content" style="display: block;">
         <div class="Command">
           <h1>Trajectory</h1>
           <input
@@ -307,7 +306,7 @@
       <div class="content">
         <br />
         <input
-          style="width:200px"
+          style="width: 200px;"
           id="tune_gain_button_"
           onclick="tuneGain()"
           class="button"
@@ -315,7 +314,7 @@
           type="button"
         />
         <input
-          style="width:200px"
+          style="width: 200px;"
           id="send_signal_button_"
           onclick="moveSignal()"
           class="button"
@@ -497,7 +496,7 @@
       var i;
 
       for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
+        coll[i].addEventListener("click", function () {
           this.parentNode.classList.toggle("active");
           var content = this.parentNode.nextElementSibling;
 
@@ -542,7 +541,7 @@
 
       var jointPositionState = document.getElementById("jointPosition")
         .children[1];
-      jointPositionSliders.forEach(slider => {
+      jointPositionSliders.forEach((slider) => {
         if (slider.Visible) {
           jointPositionState.appendChild(slider.Render);
         }
@@ -551,14 +550,14 @@
       var jointVelocityState = document.getElementsByClassName(
         "jointVelocity"
       )[0].children[1];
-      jointVelocitySliders.forEach(slider => {
+      jointVelocitySliders.forEach((slider) => {
         if (slider.Visible) {
           jointVelocityState.appendChild(slider.Render);
         }
       });
 
       var qpState = document.getElementById("qpStateDiv").children[1];
-      qpStateSliders.forEach(slider => {
+      qpStateSliders.forEach((slider) => {
         if (slider.Visible) {
           qpState.appendChild(slider.Render);
         }
@@ -566,6 +565,7 @@
       // jointPositionState.appendChild(jointPositionSliders[0].Render);
     </script>
 
+    <script type="text/javascript" src="scripts/script.js"></script>
     <script type="text/javascript" src="scripts/front.js"></script>
     <script type="text/javascript" src="scripts/positions.js"></script>
   </body>

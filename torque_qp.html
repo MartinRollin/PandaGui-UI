@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
+
+    <script type="text/javascript" src="scripts/SpinBox.js"></script>
+    <script type="text/javascript" src="scripts/eventemmiter2.min.js"></script>
+    <script type="text/javascript" src="scripts/roslib.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script type="text/javascript" src="scripts/Slider.js"></script>
+    <script
+      type="text/javascript"
+      src="http://latex.codecogs.com/latexit.js"
+    ></script>
+  </head>
+  <body>
+    <h2>Panda GUI</h2>
+    <output id="connection_state"> Not connected </output>
+    <div class="jointState">
+      <div class="Commands">
+        <button type="button" class="collapsible" draggable="true" id="dragme">
+          Commands
+        </button>
+        <div class="content" style="display: block;">
+          <div class="Command">
+            <h1>Trajectory</h1>
+            <input
+              id="play_traj_button_"
+              onclick="playTraj()"
+              class="button"
+              value="Play"
+              type="button"
+            />
+            <input
+              id="build_traj_button_"
+              onclick="buildTraj()"
+              class="button"
+              value="Build"
+              type="button"
+            />
+            <input
+              id="publish_traj_button_"
+              onclick="publishTraj()"
+              class="button"
+              value="Publish"
+              type="button"
+            />
+            <button onclick="refreshTopicsList()">refresh</button>
+            <select
+              id="topicsList"
+              name="topicsList"
+              size="number_of_options"
+              onchange="selectedTopic"
+            >
+            </select>
+            <button onclick="selectedTopic()">Info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="scripts/dynamicRos.js"></script>
+</html>
