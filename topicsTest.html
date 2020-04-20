@@ -10,7 +10,7 @@
     <script type="text/javascript" src="scripts/eventemmiter2.min.js"></script>
     <script type="text/javascript" src="scripts/roslib.js"></script>
 
-    <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="scripts/Slider.js"></script>
     <script
       type="text/javascript"
@@ -50,17 +50,16 @@
               type="button"
             />
             <button onclick="refreshTopicsList()">refresh</button>
-            <select
-              id="topicsList"
-              name="topicsList"
-              size="number_of_options"
-              onchange="selectedTopic"
-            >
+            <select id="topicsList" name="topicsList" size="number_of_options">
+              <option value="sensor_msgs/JointState">/joint_states</option>
             </select>
             <button onclick="selectedTopic()">Info</button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="result">
+      <button class="add">Add thing</button>
     </div>
   </body>
   <script type="text/javascript" src="scripts/dynamicRos.js"></script>

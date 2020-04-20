@@ -1,10 +1,3 @@
-//Make the DIV element draggagle:
-dragElement(document.getElementById("movingDiv"));
-dragElement(document.getElementById("commandsDiv"));
-dragElement(document.getElementById("robotStateDiv"));
-dragElement(document.getElementById("qpStateDiv"));
-dragElement(document.getElementById("gainTunningDiv"));
-
 function dragElement(elmnt) {
   var pos1 = 0,
     pos2 = 0,
@@ -51,12 +44,6 @@ function dragElement(elmnt) {
   }
 
   function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    // elmnt.onmouseup = e => {
-    //   addOrUpdate(e);
-    //   alert(elmnt.offsetLeft + " " + elmnt.id);
-    // };
-    // document.onmouseup = null;
     document.onmousemove = null;
   }
 }

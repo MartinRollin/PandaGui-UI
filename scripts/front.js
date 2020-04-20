@@ -1,47 +1,35 @@
-// Setting local variables, each movable header part should be here
-let movingDiv = document.getElementById("movingDiv");
-let commandsDiv = document.getElementById("commandsDiv");
-let robotStateDiv = document.getElementById("robotStateDiv");
-let qpStateDiv = document.getElementById("qpStateDiv");
-let gainTunningDiv = document.getElementById("gainTunningDiv");
-
-const movableDivs = new Array(
-  movingDiv,
-  commandsDiv,
-  robotStateDiv,
-  qpStateDiv,
-  gainTunningDiv
-);
-
-const changePositionTarget = event => {
+// recursive methods to let current clicked object on front
+// method for first call with onclick event
+const changePositionTarget = (event) => {
   let id = event.target.id;
   if (id.substring(id.length - 3) != "Div") {
     changePosition(event.target.parentNode);
   } else {
+    // clicked object is final div container
+    changePosition(event.target);
   }
 };
 
-const changePosition = elem => {
+const changePosition = (elem) => {
   let id = elem.id;
   if (id.substring(id.length - 3) == "Div") {
-    let posIdFinal = elem.children[0].children[0].getAttribute("positionsId");
-    movableDivs.forEach(movableDiv => {
-      let movableHeader = movableDiv.children[0].children[0];
+    let posIdFinal = $(`#${elem.id}Header`).attr("positionsId");
+    for (i = 0; i < movingDivs.length; i++) {
+      movingDiv = movingDivs[i];
+      let movableHeader = movingDiv.children[0].children[0];
       if (movableHeader.getAttribute("positionsId") == posIdFinal) {
-        movableDiv.style.zIndex = "9";
+        movingDiv.style.zIndex = "9";
       } else {
-        movableDiv.style.zIndex = movableDiv.style.zIndex - 1;
+        movingDiv.style.zIndex = movingDiv.style.zIndex - 1;
       }
-    });
+    }
   } else if (elem.parentNode.id != undefined) {
     if (elem.parentNode) {
       changePosition(elem.parentNode);
     }
   } else {
-    console.log("oups ca marche pas");
+    console.log(
+      "Div " + id + "is not moving, check the structure of this element."
+    );
   }
 };
-
-movableDivs.forEach(movableDiv => {
-  movableDiv.addEventListener("mousedown", changePositionTarget);
-});
