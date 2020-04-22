@@ -4,4 +4,3 @@ for (i = 0; i < movingDivs.length; i++) {
   dragElement(movingDivs[i]);
   movingDivs[i].addEventListener("mousedown", changePositionTarget);
 }
-console.log(movingDivs);

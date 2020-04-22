@@ -39,9 +39,6 @@ window.onload = function () {
           cursor.value.id < movableHeaders.length
         ) {
           let curentElem = document.getElementById(cursor.value.sectionTitle);
-          console.log(
-            $(`[id=${cursor.value.sectionTitle}Header]`).attr("positionsId")
-          );
           if (curentElem == null) {
             console.log(
               "element of id : " +
@@ -50,23 +47,13 @@ window.onload = function () {
                 cursor.value.sectionTitle
             );
           } else {
-            console.log(
-              "element of id cursor : " +
-                cursor.value.id +
-                " est changée " +
-                cursor.value.sectionTitle +
-                " identifiant de" +
-                curentElem.id +
-                " identifiant de" +
-                curentElem.positionsId
-            );
             curentElem.style.top = cursor.value.positionTop;
             curentElem.style.left = cursor.value.positionLeft;
             curentElem.childNodes[3].style.display = cursor.value.display;
             $("#" + curentElem.id).css("z-index", cursor.value.index);
           }
         } else {
-          // supprimer l'element de la bdd
+          // suppress element from db
           console.log(
             "element of id : " +
               cursor.value.id +
